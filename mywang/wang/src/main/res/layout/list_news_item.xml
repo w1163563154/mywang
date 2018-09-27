@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp" >
+    
+
+    <TextView
+        android:paddingBottom="10dp"
+        android:id="@+id/tv_news_title"            
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="所有司机，五一长假你可能被扣分罚款，请,@所有司机，五一长假你可能被扣分罚款，请"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="20dp"
+        />
+    
+    <ImageView
+        
+        android:id="@+id/iv_news_pic"       
+        android:background="@drawable/homepage" 
+        android:layout_width="wrap_content"
+        android:layout_height="138dp"
+        />
+    
+    <TextView
+        android:id="@+id/tv_news_read" 
+        android:paddingTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="5595阅读数"
+              
+        />
+    
+    
+</LinearLayout>

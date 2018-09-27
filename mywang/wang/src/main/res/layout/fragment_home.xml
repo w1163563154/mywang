@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="#F2F2F2"
+    >
+    
+    <com.wang.xiaoyu.View.NoScrollViewpager
+        
+        android:id="@+id/vp_noscroll_home"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    
+     <RadioGroup 
+        android:id="@+id/rg_group"
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content" 
+    	android:gravity="center"
+    	android:orientation="horizontal"    	
+    	android:background="@android:color/white"
+        >
+        <RadioButton 
+           android:id="@+id/rb_home"
+           style="@style/RadioButton_Tab_Style"          
+           android:text="首页" 
+           android:checked="true"                   
+           android:drawableTop="@drawable/home"                     
+            />
+        <RadioButton
+            android:id="@+id/rb_shop" 
+           style="@style/RadioButton_Tab_Style"          
+           android:text="门店"            
+           android:drawableTop="@drawable/shop" 
+                               
+            />
+        <RadioButton
+            android:id="@+id/rb_store" 
+           style="@style/RadioButton_Tab_Style"          
+           android:text="商城"            
+           android:drawableTop="@drawable/store"
+                                
+            />
+        <RadioButton 
+           android:id="@+id/rb_news" 
+           style="@style/RadioButton_Tab_Style"          
+           android:text="资讯"            
+           android:drawableTop="@drawable/selector_news_bg"                     
+            />
+        <RadioButton
+           android:id="@+id/rb_mine"  
+           style="@style/RadioButton_Tab_Style" 
+                  
+           android:text="我的"            
+           android:drawableTop="@drawable/tabbar_icon_mine_default"                     
+            />
+        
+        
+    </RadioGroup>
+    
+    
+    
+
+</LinearLayout>

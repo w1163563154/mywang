@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp" >
+        
+        
+
+        <com.wang.xiaoyu.View.HomeViewPager
+            android:id="@+id/vp_list_home_head"
+            android:layout_width="match_parent"
+            android:layout_height="130dp" />
+        
+        
+        
+
+        <EditText
+            android:id="@+id/et_home"
+            android:layout_width="269dp"
+            android:layout_height="22dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/reset_setup_bg_press"
+            android:hint="搜索相关配件"
+            android:paddingLeft="35dp"
+            android:textColor="#999999"
+            android:textSize="13dp" />
+        
+        
+        
+        <com.viewpagerindicator.CirclePageIndicator
+        android:id="@+id/indicator"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        app:fillColor="#f00"
+        app:pageColor="#00ffffff"
+        app:radius="5dp"
+        app:strokeColor="#FFFFFF"
+        app:strokeWidth="2dp"
+        />
+        
+
+        <ImageButton
+            android:id="@+id/ib_home_topbar_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_alignBottom="@+id/et_home"
+            android:layout_toRightOf="@+id/et_home"
+            android:background="@null"
+            android:src="@drawable/home_topbar_news" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/et_home"
+            android:layout_alignTop="@+id/ib_home_topbar_news"
+            android:layout_marginLeft="14dp"
+            android:background="@null"
+            android:src="@drawable/home_search" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/home_search" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center"
+            android:text="一汽大众奥迪—Q5 2.0T 2012年"
+            android:textColor="#666666" />
+    </LinearLayout>
+
+    
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"            
+            android:background="@drawable/home_promotions_entrance" />
+   
+        <com.wang.xiaoyu.View.MyGridview 
+            android:padding="10dp"
+            android:id="@+id/gv_home_head"
+            android:numColumns="4"         
+            android:layout_width="match_parent"
+    		android:layout_height="match_parent" 
+            ></com.wang.xiaoyu.View.MyGridview>
+        
+
+</LinearLayout>

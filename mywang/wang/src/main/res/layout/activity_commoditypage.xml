@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+
+    >
+
+    <com.wang.xiaoyu.View.CommdodityScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="500dp" >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/vp_commodity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                
+                
+                
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#A6A6A6" />
+
+            <TextView
+                android:id="@+id/tv_commodityap_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:text="88"
+                android:textColor="#E21918"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/tv_commodityap_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp"
+                android:text="空气怒清气"
+                android:textColor="#0A0408"
+                android:textSize="17dp" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#A6A6A6" />
+            <TextView
+                
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp"
+                android:text="车主评价"
+                android:textColor="#0A0408"
+                android:textSize="17dp" />
+            
+            
+        </LinearLayout>
+    </com.wang.xiaoyu.View.CommdodityScrollView>
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        >
+        <Button
+            android:id="@+id/bu_shopcar"
+         android:layout_weight="1"
+         android:layout_width="0dp"
+         android:layout_height="50dp"
+            
+            />
+        <Button
+             android:id="@+id/bu_addshopping"  
+            android:layout_weight="2"
+         android:layout_width="0dp"
+         android:layout_height="50dp"
+         android:text="加入购物车"
+         android:textColor="#FFFFFF"
+         android:background="#0A0408"   
+            />
+        <Button
+             android:id="@+id/bu_buy" 
+            android:background="#E21918" 
+            android:layout_weight="2"
+         android:layout_width="0dp"
+         android:layout_height="50dp" 
+          android:text="立即购买"
+         android:textColor="#FFFFFF"  
+            />
+        
+        
+    </LinearLayout>
+
+</LinearLayout>

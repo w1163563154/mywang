@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+              android:descendantFocusability="blocksDescendants"
+    >
+
+    <include layout="@layout/title_bar" />
+
+    
+
+        <LinearLayout
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@android:color/white" 
+        android:weightSum="3.3"   
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+            >
+        <CheckBox 
+                      
+            android:id="@+id/cb_shop_selectdistance"
+            style="@style/Shop_Tab_Style"
+            android:drawableRight="@drawable/screen_pull_default"
+            android:text="选择距离" />
+
+        <CheckBox
+            android:id="@+id/cb_shop_selectarea"
+            style="@style/Shop_Tab_Style"
+            android:drawableRight="@drawable/screen_pull_default"
+            android:gravity="center"
+            android:text="选择区域" />
+
+        <CheckBox          
+            android:id="@+id/cb_shop_selectcarnumber"
+            style="@style/Shop_Tab_Style"
+            android:drawableRight="@drawable/screen_pull_default"
+            android:gravity="center"
+            android:text="选择车牌" />
+    </LinearLayout>
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/srf_shoprefresh"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+    <ListView
+        android:divider="@null"
+        android:id="@+id/lv_shop"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#fff"
+        android:cacheColorHint="#fff" >
+    </ListView>
+
+</android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:background="#E6E6E6" />
+
+</LinearLayout>

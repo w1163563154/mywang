@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:gravity="center_vertical"
+    android:background="@android:color/white"
+    android:id="@+id/rl_RelativeLayou"
+   >
+
+    <TextView   
+     android:gravity="center"
+    android:id="@+id/tv_title_bar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="选择门店"
+    android:padding="8dp"
+    android:textSize="20sp"
+    android:textColor="#000000"
+        />
+
+   
+    
+    <View
+         android:layout_below="@id/tv_title_bar"
+       android:layout_width="match_parent"
+    android:layout_height="2dp" 
+    android:background="#E6E6E6"
+        />
+    
+</RelativeLayout>

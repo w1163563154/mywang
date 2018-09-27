@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="#fff">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="#00ff"
+        android:id="@+id/view"/>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/iv_dialog_cardphoto"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:elevation="5dp"
+        app:cardCornerRadius="5dp"
+        >
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/shop_detail_page_icon_service"
+
+            android:id="@+id/iv_dialog_photo"/>
+
+    </android.support.v7.widget.CardView>
+
+
+    <ImageView
+        android:id="@+id/iv_dialog_close"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/oder_repair_close"
+        android:layout_below="@+id/view"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_alignBottom="@+id/iv_dialog_cardphoto"
+        android:layout_toRightOf="@+id/iv_dialog_cardphoto"
+        android:layout_toEndOf="@+id/iv_dialog_cardphoto">
+        <TextView
+            android:id="@+id/tv_dialog_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="空气清洗剂"
+            />
+
+        <TextView
+            android:id="@+id/tv_dialong_price"
+            android:textColor="#FB1111"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="38.00元"
+            />
+    </LinearLayout>
+    
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/iv_dialog_cardphoto"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            android:background="#FDEBDC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/repair_search_list_attention"/>
+
+            <TextView
+
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="门店安装是指门店代收并安装配件"
+                android:textColor="#fffda762"
+                android:textSize="14dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/iv"
+                android:layout_toEndOf="@+id/iv"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="到货方式"
+            android:textColor="#ff999999"
+            android:textSize="14dp"
+            />
+
+        <RadioGroup
+            android:id="@+id/rg_shop_list_item_detall"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="门店安装"
+                android:checked="true"
+                android:textColor="@color/selector_rb_shop_text_bg"
+                android:background="@drawable/selector_dialog_rb"
+                android:textSize="14dp"
+                android:button="@null"
+                android:id="@+id/rb_dialog_shop"/>
+
+            <RadioButton
+                android:id="@+id/rb_dialog_home"
+                android:button="@null"
+                android:padding="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="送货到家"
+                android:textColor="@color/selector_rb_shop_text_bg"
+                android:textSize="14dp"
+                android:background="@drawable/selector_dialog_rb"
+                android:layout_marginLeft="41dp"
+                android:layout_marginStart="18dp"/>
+
+        </RadioGroup>
+
+
+        <TextView
+            android:id="@+id/tv_dialog_servicecharge"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务费：￥32.00"
+            android:textColor="#ff333333"
+            android:textSize="14dp"
+            />
+
+
+        <RelativeLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数量"
+                android:layout_centerVertical="true"
+                android:textColor="#ff999999"
+                android:textSize="14dp"
+                />
+
+
+
+            <LinearLayout
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                >
+                <TextView
+                    android:id="@+id/tv_dialog_subtract"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="15dp"
+                    android:background="@drawable/shape_text_dialog_jianhao"
+
+                    />
+                <TextView
+                    android:id="@+id/tv_dialog_amount"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="15dp"
+                    android:background="@drawable/shape_text_dialog_shuliang"
+                    />
+                <TextView
+                    android:id="@+id/tv_dialog_add"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+"
+                    android:textSize="15dp"
+                    android:background="@drawable/shape_text_dialog_jianhao"
+                    />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/bt_dialog_confirm"
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D42112"
+            android:text="确定"
+            android:textColor="#FFFFFF"
+            android:textSize="18dp"
+            />
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>
+
+
+
+

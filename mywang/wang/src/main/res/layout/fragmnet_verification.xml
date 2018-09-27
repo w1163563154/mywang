@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="年审代办注意事项"
+                android:textColor="#ff333333"
+                android:textSize="15dp" />
+
+            <TextView
+                android:singleLine="false"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="3dp"
+                android:paddingTop="5dp"
+                android:text="1.车的外表不能有改装(不能加包围,不能改变车身颜色)\n2.玻璃太阳膜颜色不能过深(一米外能看清物品，主要指面包车、货车，5座以下的小车没有关系) \n3.面包车和货车都要有尾部扩大号\n 4.弹簧弓的片数不能增减 /n5.面包车不能多不能少，要有灭火器 \n6.厢式货车车厢不能改装（不能开侧门,不能开顶，不能加尾板）\n 7.轮胎大小不能有改动、同轴轮胎的花纹要一致 \n8.灯光亮度要够 \n9.车辆有未处理的交通违章，或车辆被法院查封的，不可以年审 \n10.周末下单用户推迟到周一"
+                android:textColor="#ff333333"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="年审最佳时间："
+                android:textColor="#ff333333"
+                android:textSize="15dp" />
+
+            <TextView
+                android:lineSpacingExtra="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="机动车在年审前3个月，都可接受检测申请年审。最好提前两个月或者一个多月，别等到距离年审到期只剩下几天才想起受检。其次，每月10日前，检测站业务量相对偏少，是过线免排队的良机，中旬开始车子增多，下旬是扎堆期。"
+                android:textColor="#ff333333"
+                android:textSize="12dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="所需资料："
+                android:textColor="#ff333333"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    
+                    android:background="@drawable/shape_text_border_color"
+                    android:id="@+id/tv_left"
+                    android:layout_width="0dp"
+                    android:layout_height="143dp"
+                    android:layout_weight="1"
+                    android:text="你好\n你好"
+                    android:textSize="13dp" />
+
+                <TextView
+                    
+                    android:background="@drawable/shape_text_border_color"
+                    android:id="@+id/tv_right"
+                    android:layout_width="0dp"
+                    android:layout_height="143dp"
+                    android:layout_weight="1"
+                    android:text="你好\n你好"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="所需费用"
+                android:textColor="#ff333333"
+                android:textSize="15dp" />
+            
+          <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    android:gravity="center"
+                    android:background="@drawable/shape_text_border_color"
+                    android:id="@+id/tv_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                     android:text="上线检测"
+					android:textColor="#ff333333"
+				    android:textSize="12dp"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:background="@drawable/shape_text_border_color"
+                    android:id="@+id/tv_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="260"
+						android:textColor="#ff333333"
+						android:textSize="12dp"
+                    />
+            </LinearLayout>
+            
+          <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="5dp" >
+
+                <TextView
+                    android:gravity="center"
+                    android:background="@drawable/shape_text_border_color"
+                    android:id="@+id/tv_left"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                     android:text="打证"
+					android:textColor="#ff333333"
+				    android:textSize="12dp"/>
+
+                <TextView
+                    android:gravity="center"
+                    android:background="@drawable/shape_text_border_color"
+                    android:id="@+id/tv_right"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="60"
+						android:textColor="#ff333333"
+						android:textSize="12dp"
+                    />
+            </LinearLayout>
+            
+          <Button
+              android:layout_marginTop="5dp"
+              android:id="@+id/bu_verification_order"
+              android:layout_marginLeft="10dp" 
+              android:layout_marginRight="10dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/selector_verification_bu"
+              android:text="申请预约"
+				android:textColor="#ffffffff"
+				android:textSize="15dp"
+              />
+            
+            
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

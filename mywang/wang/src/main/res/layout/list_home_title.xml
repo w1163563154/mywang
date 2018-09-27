@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical" >
+   
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/laba" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="热门"
+                android:textColor="#FF4343" />
+
+            <com.wang.xiaoyu.View.FocusTextView
+                android:id="@+id/wang_view_Loop"
+               android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:text="每个月收入多少才能养得起十万的小汽车啊啊啊啊啊"
+        android:textColor="#000" >
+            </com.wang.xiaoyu.View.FocusTextView>
+        </LinearLayout>
+
+        <com.wang.xiaoyu.View.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"           
+            android:text="特/色/推/荐" />
+    
+
+</LinearLayout>

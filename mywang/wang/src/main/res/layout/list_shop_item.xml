@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="13dp" >
+
+    <ImageView
+        android:id="@+id/iv_shop_list_item_phone"
+        android:layout_width="85dp"
+        android:layout_height="85dp"
+        android:background="@drawable/text"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/tv_shop_list_item_name"
+            android:layout_width="84dp"
+            android:layout_height="19dp"
+            android:text="安驰汽车维修"
+            android:textColor="#ff333333"
+            android:textSize="14sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_shop_list_item_appraisal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5.0分"
+                android:textColor="#fffb1111"
+                android:textSize="14sp"/>
+
+            <ImageView
+                android:id="@+id/iv_shop_list_item_one"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/maintain_icon_order_sma"/>
+
+            <ImageView
+                android:id="@+id/iv_shop_list_item_two"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_marginLeft="5dp"
+                android:src="@drawable/maintain_icon_order_sma"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_shop_list_item_address"
+                android:layout_width="163dp"
+                android:layout_height="15dp"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="大渡口区钢花路30微托邦0微托邦..."
+                android:textColor="#ff666666"
+                android:textSize="10dp"/>
+
+            <TextView
+                android:id="@+id/tv_shop_list_item_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:layout_marginLeft="9dp"
+                android:text="1.5KM"
+                android:textColor="#ff999999"
+                android:textSize="10dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/maintain_icon_call_smal"/>
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/maintain_icon_navigation_smal"/>
+
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginLeft="14dp"
+                android:src="@drawable/maintain_icon_order_smal"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
