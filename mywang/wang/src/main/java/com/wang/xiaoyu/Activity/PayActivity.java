@@ -11,12 +11,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 import com.wang.xiaoyu.R;
-import com.wang.xiaoyu.Utils.L;
 import com.wang.xiaoyu.Zfb.PayResult;
 import com.wang.xiaoyu.domain.OrderInfoUtil2_0;
 
@@ -54,6 +54,8 @@ public class PayActivity extends Activity implements View.OnClickListener{
             }
         }
     };
+    private RadioButton mZfbRadioButton;
+    private RadioButton mWxRadioButton;
 
 
     @Override
@@ -61,7 +63,7 @@ public class PayActivity extends Activity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
 
-        L.e("跳转到Pay");
+        //L.e("跳转到Pay");
 
         initUI();
     }
@@ -70,6 +72,8 @@ public class PayActivity extends Activity implements View.OnClickListener{
         mPaymentRadioGroup = (RadioGroup)findViewById(R.id.rg_payment_fragment);
         mPaymentButton = (Button)findViewById(R.id.bt_payment_confrim);
 
+        mZfbRadioButton = (RadioButton) findViewById(R.id.rb_zfb);
+        mWxRadioButton = (RadioButton) findViewById(R.id.rb_wx);
         mPaymentButton.setOnClickListener(this);
 
         mPaymentRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -77,10 +81,10 @@ public class PayActivity extends Activity implements View.OnClickListener{
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_zfb:
-
+                        mZfbRadioButton.setChecked(true);
                         break;
                     case R.id.rb_wx:
-
+                        mWxRadioButton.setChecked(true);
                         break;
 
 
@@ -98,49 +102,57 @@ public class PayActivity extends Activity implements View.OnClickListener{
         switch (v.getId()) {
         		case R.id.bt_payment_confrim:
 
-                    if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
-                        new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialoginterface, int i) {
-                                        //
-                                        finish();
-                                    }
-                                }).show();
-                        return;
-                    }
-
-                    /**
-                     * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
-                     * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
-                     * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
-                     *
-                     * orderInfo的获取必须来自服务端；
-                     */
-                    boolean rsa2 = (RSA2_PRIVATE.length() > 0);
-                    Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
-                    String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
-
-                    String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
-                    String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
-                    final String orderInfo = orderParam + "&" + sign;
-
-                    Runnable payRunnable = new Runnable() {
-
-                        @Override
-                        public void run() {
-                            PayTask alipay = new PayTask(PayActivity.this);
-                            Map<String, String> result = alipay.payV2(orderInfo, true);
-                            Log.i("msp", result.toString());
-
-                            Message msg = new Message();
-                            msg.what = SDK_PAY_FLAG;
-                            msg.obj = result;
-                            mHandler.sendMessage(msg);
+        		    //选择支付宝支付
+        		    if(mZfbRadioButton.isChecked()){
+                        if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
+                            new AlertDialog.Builder(this).setTitle("警告").setMessage("需要配置APPID | RSA_PRIVATE")
+                                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialoginterface, int i) {
+                                            //
+                                            finish();
+                                        }
+                                    }).show();
+                            return;
                         }
-                    };
 
-                    Thread payThread = new Thread(payRunnable);
-                    payThread.start();
+                        /**
+                         * 这里只是为了方便直接向商户展示支付宝的整个支付流程；所以Demo中加签过程直接放在客户端完成；
+                         * 真实App里，privateKey等数据严禁放在客户端，加签过程务必要放在服务端完成；
+                         * 防止商户私密数据泄露，造成不必要的资金损失，及面临各种安全风险；
+                         *
+                         * orderInfo的获取必须来自服务端；
+                         */
+                        boolean rsa2 = (RSA2_PRIVATE.length() > 0);
+                        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(APPID, rsa2);
+                        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
+
+                        String privateKey = rsa2 ? RSA2_PRIVATE : RSA_PRIVATE;
+                        String sign = OrderInfoUtil2_0.getSign(params, privateKey, rsa2);
+                        final String orderInfo = orderParam + "&" + sign;
+
+                        Runnable payRunnable = new Runnable() {
+
+                            @Override
+                            public void run() {
+                                PayTask alipay = new PayTask(PayActivity.this);
+                                Map<String, String> result = alipay.payV2(orderInfo, true);
+                                Log.i("msp", result.toString());
+
+                                Message msg = new Message();
+                                msg.what = SDK_PAY_FLAG;
+                                msg.obj = result;
+                                mHandler.sendMessage(msg);
+                            }
+                        };
+
+                        Thread payThread = new Thread(payRunnable);
+                        payThread.start();
+                    }else{
+                        //调取微信支付
+                        Toast.makeText(PayActivity.this, "没有微信支付", Toast.LENGTH_SHORT).show();
+                }
+
+
         			break;
 
         		default:

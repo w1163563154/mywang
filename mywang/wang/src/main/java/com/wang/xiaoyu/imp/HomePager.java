@@ -102,8 +102,6 @@ public class HomePager extends BasePager {
 
 	class MyAdapter extends BaseAdapter{
 
-		
-		
 		@Override
 		public int getCount() {
 			

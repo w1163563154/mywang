@@ -11,6 +11,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import com.wang.xiaoyu.Utils.SwipelayoutManager;
+
 /**
  * Created by 小 on 2018/9/25.
  */
@@ -42,6 +44,13 @@ public class SwipeLayout extends FrameLayout {
         super(context, attrs, defStyleAttr);
         init();
     }
+
+    //定义有开和关状态的枚举
+    enum SwipeState{
+        Open,Close;
+    }
+
+    private SwipeState currenState=SwipeState.Close; //默认为关的状态
 
 
     private void init() {
@@ -81,11 +90,26 @@ public class SwipeLayout extends FrameLayout {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         boolean result = viewDragHelper.shouldInterceptTouchEvent(ev);
+
+        //如果当前有打开的，则需要直接拦截，交给onTouch处理
+        if(!SwipelayoutManager.getInstance().isShouldSwipe(this)){
+            //先关闭已经打开的layout
+            SwipelayoutManager.getInstance().closeCurrentLayout();
+
+            result = true;
+        }
+
         return result;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+
+        //如果当前有打开的，则下面的逻辑不能执行
+        if(!SwipelayoutManager.getInstance().isShouldSwipe(this)){
+            requestDisallowInterceptTouchEvent(true);
+            //return true;
+        }
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -110,9 +134,6 @@ public class SwipeLayout extends FrameLayout {
 
                 break;
         }
-
-
-
         viewDragHelper.processTouchEvent(event);
         return true;
     }
@@ -196,6 +217,20 @@ public class SwipeLayout extends FrameLayout {
                 //手动移动mDeleteView
                 mContenView.layout(mContenView.getLeft()+dx,mContenView.getTop()+dy,
                         mContenView.getRight()+dx,mContenView.getBottom()+dy);
+            }
+
+            if(mContenView.getLeft()==0 && currenState!=SwipeState.Close){
+                //此时为关闭状态
+                currenState=SwipeState.Close;
+
+                //说明当前的SwipeLayout已经关闭，需要让Manager清空一下
+                SwipelayoutManager.getInstance().clearCurrentLayout();
+            }else if(mContenView.getLeft() == -mDeleteWidth && currenState!=SwipeState.Open){
+                //此时为开的状态
+                currenState=SwipeState.Open;
+
+                //当前的Swipelayout已经打开，需要让Manager记录一下下
+                SwipelayoutManager.getInstance().setSwipelayout(SwipeLayout.this);
             }
 
         }

@@ -1,11 +1,31 @@
 [
     {
+        "merged": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png",
+        "source": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_pressed_holo.9.png"
+    },
+    {
         "merged": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
         "source": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
     },
     {
         "merged": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
         "source": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png"
+    },
+    {
+        "merged": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png",
+        "source": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_holo.9.png"
+    },
+    {
+        "merged": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png",
+        "source": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_focused_holo.9.png"
+    },
+    {
+        "merged": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png",
+        "source": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_unselected_holo.9.png"
+    },
+    {
+        "merged": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
+        "source": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png"
     },
     {
         "merged": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
@@ -22,5 +42,9 @@
     {
         "merged": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png",
         "source": "F:\\git\\my-master\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_focused_holo.9.png"
+    },
+    {
+        "merged": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png",
+        "source": "D:\\Github\\mywang\\mywang\\viewPagerIndicator\\build\\intermediates\\bundles\\debug\\res\\drawable-mdpi-v4\\vpi__tab_selected_pressed_holo.9.png"
     }
 ]
