@@ -22,8 +22,8 @@
 
         <TextView
             android:id="@+id/tv_shop_list_item_name"
-            android:layout_width="84dp"
-            android:layout_height="19dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="安驰汽车维修"
             android:textColor="#ff333333"
             android:textSize="14sp"/>

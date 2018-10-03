@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     compileSdkVersion 24
     buildToolsVersion '25.0.0'
@@ -32,4 +33,21 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.2.0'
     compile 'com.github.chrisbanes.photoview:library:+'
     compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile files('libs/ShareSDK-Alipay-3.2.1.jar')
+    compile files('libs/ShareSDK-Alipay-Core-3.2.1.jar')
+    compile files('libs/ShareSDK-Alipay-Moments-3.2.1.jar')
+    compile files('libs/ShareSDK-Core-3.2.1.jar')
+    compile files('libs/ShareSDK-Email-3.2.1.jar')
+    compile files('libs/ShareSDK-QQ-3.2.1.jar')
+    compile files('libs/ShareSDK-QZone-3.2.1.jar')
+    compile files('libs/ShareSDK-ShortMessage-3.2.1.jar')
+    compile files('libs/ShareSDK-SinaWeibo-3.2.1.jar')
+    compile files('libs/ShareSDK-TencentWeibo-3.2.1.jar')
+    compile files('libs/ShareSDK-Wechat-3.2.1.jar')
+    compile files('libs/ShareSDK-Wechat-Core-3.2.1.jar')
+    compile files('libs/ShareSDK-Wechat-Favorite-3.2.1.jar')
+    compile files('libs/ShareSDK-Wechat-Moments-3.2.1.jar')
+    compile files('libs/MobCommons-2018.0918.1444.jar')
+    compile files('libs/MobTools-2018.0911.1425.jar')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 }

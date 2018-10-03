@@ -9,7 +9,6 @@ import android.view.Window;
 import android.widget.FrameLayout;
 
 import com.wang.xiaoyu.Fragment.ConfirmOrderFragment;
-import com.wang.xiaoyu.Fragment.ConfirmPaymentFragment;
 import com.wang.xiaoyu.Fragment.ShopCarFragment;
 import com.wang.xiaoyu.Fragment.VerificationFragmnet;
 import com.wang.xiaoyu.Fragment.VerificationsecondFragmnet;
@@ -25,7 +24,7 @@ public class TitleActivity extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);// 去掉标题,
 		setContentView(R.layout.activity_verification);
 		
 		FrameLayout fl_verification = (FrameLayout) findViewById(R.id.fl_verification);
@@ -53,11 +52,7 @@ public class TitleActivity extends FragmentActivity {
 					transaction.replace(R.id.fl_verification, new VerificationsecondFragmnet(), "VerificationsecondFragmnet");
 					transaction.commit();
 					break;
-				case "ConfirmPaymentFragment"://确认付款fragment
-					transaction.replace(R.id.fl_verification, new ConfirmPaymentFragment(), "ConfirmPaymentFragment");
-					transaction.commit();
-					break;
-				case "ShopCarFragment"://确认付款fragment
+				case "ShopCarFragment"://购物车fragment
 					transaction.replace(R.id.fl_verification, new ShopCarFragment(), "ShopCarFragment");
 					transaction.commit();
 					break;

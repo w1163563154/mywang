@@ -25,7 +25,7 @@ public class HomePagerListData {
 		@Override
 		public String toString() {
 			
-			return "id"+id;
+			return "id"+photo;
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class HomePagerListData {
 		@Override
 		public String toString() {
 			
-			return "name"+name;
+			return "name"+imageUrl;
 		}
 	}
 	
