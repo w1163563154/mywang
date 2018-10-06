@@ -121,7 +121,7 @@ public abstract class MyAadapter<T> extends BaseAdapter {
                         public void run() {
                             if(moreData!=null){
                                 // 每一页有10条数据, 如果返回的数据小于20条, 就认为到了最后一页了
-                                if(moreData.size() < 6){
+                                if(moreData.size() < 10){
                                     //没有跟多数据了
                                     holder.setData(MoreHolder.STATE_MORE_NONE);
                                     Toast.makeText(UIUtils.getContext(),"没有更多数据了",Toast.LENGTH_SHORT).show();
@@ -135,6 +135,7 @@ public abstract class MyAadapter<T> extends BaseAdapter {
                                 data.addAll(moreData);
                                 //刷新数据
                                 MyAadapter.this.notifyDataSetChanged();
+
 
                             }else{
                                 //加载跟多失败

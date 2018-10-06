@@ -66,8 +66,11 @@ public class HomePager extends BasePager {
 			public void onSuccess(ResponseInfo<String> responseInfo)
 			{
 				String result = responseInfo.result;
+				
+				
 				//解析数据
 				processData(result);
+				System.out.println("初始化首页数据了");
 			}
 
 			@Override
@@ -78,7 +81,8 @@ public class HomePager extends BasePager {
 				Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
 				
 			}
-
+		
+				
 		
 		});
 

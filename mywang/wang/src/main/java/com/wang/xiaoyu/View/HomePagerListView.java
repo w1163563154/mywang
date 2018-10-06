@@ -27,7 +27,6 @@ import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.wang.xiaoyu.Activity.TitleActivity;
 import com.wang.xiaoyu.R;
-import com.wang.xiaoyu.Utils.L;
 import com.wang.xiaoyu.domain.HomePagerListData;
 import com.wang.xiaoyu.domain.HomePagerListData.HomePagerListBaner;
 import com.wang.xiaoyu.global.GlobalConstants;
@@ -87,7 +86,6 @@ public class HomePagerListView extends ListView {
 			@Override
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 				String result = responseInfo.result;
-				L.e("result:"+result);
 				ParseJson(result);
 			}
 			@Override
@@ -107,8 +105,8 @@ public class HomePagerListView extends ListView {
 	 */
 	private void ParseJson(String result) {
 		Gson gson = new Gson();
-		mHomePagerListData = gson.fromJson(result, HomePagerListData.class);
-		L.e("解析结果" + mHomePagerListData);
+		mHomePagerListData = gson.fromJson(result, HomePagerListData.class);		
+		System.out.println("解析结果"+mHomePagerListData);
 		
 		
 		mTitleStrs = new String[]{"在线技师","美容","保养"

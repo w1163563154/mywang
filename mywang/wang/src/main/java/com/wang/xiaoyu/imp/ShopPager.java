@@ -4,7 +4,6 @@ package com.wang.xiaoyu.imp;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -27,13 +26,7 @@ import com.wang.xiaoyu.Utils.UIUtils;
 import com.wang.xiaoyu.base.BasePager;
 import com.wang.xiaoyu.domain.ShopData;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,13 +52,10 @@ public class ShopPager extends BasePager implements CompoundButton.OnCheckedChan
 	private ShopData mShopData;
 
 	public int count=0;
-
-    public int more=1;
 	private SwipeRefreshLayout mShopRefresh;
-    private ArrayList<ShopData.BenData> mMoreDatas;
 
 
-    public ShopPager(Activity activity) {
+	public ShopPager(Activity activity) {
 		super(activity);
 		
 	}
@@ -78,9 +68,7 @@ public class ShopPager extends BasePager implements CompoundButton.OnCheckedChan
 		selectcarnumber = (CheckBox) view.findViewById(R.id.cb_shop_selectcarnumber);
 		selectdistance = (CheckBox) view.findViewById(R.id.cb_shop_selectdistance);
 		tv_title_bar = (TextView) view.findViewById(R.id.tv_title_bar);
-
-        tv_title_bar.setText("门店");
-        //下拉刷新
+		//下拉刷新
 		mShopRefresh = (SwipeRefreshLayout) view.findViewById(R.id.srf_shoprefresh);
 		mShopRefresh.setColorSchemeResources(R.color.cardview_shadow_start_color);
 		mShopRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -101,198 +89,109 @@ public class ShopPager extends BasePager implements CompoundButton.OnCheckedChan
 		selectarea.setOnCheckedChangeListener(this);
 		selectcarnumber.setOnCheckedChangeListener(this);
 		selectdistance.setOnCheckedChangeListener(this);
-
+		
 
 		return view;
 	}
 	@Override
 	public void initData() {
 
-        //读缓存
-        String cache = getCache();
-        if(TextUtils.isEmpty(cache)){// 如果没有缓存,或者缓存失效
-            //访问服务器，获取数据
-            getDataFromServer();
-        }else{
-            //解析数据
-            processData(cache);
-            shopListView.setAdapter(new shopListViewAdapter(mShopData.data));
+		tv_title_bar.setText("门店");
 
-        }
+		Map<String, String> params = new HashMap<String, String>();
+		//访问服务器
+		//1.拿到okhttp对象
+		//OkHttpClient okHttpClient = new OkHttpClient();
 
 
-        //shopListView条目监听
-        shopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(mActivity,ShopListItemActivity.class);
-                intent.putExtra("id",mShopData.data.get(position).id);
-                mActivity.startActivity(intent);
-            }
-        });
+		OkHttpClient okHttpClient = OkHttphelper.getOkHttpClient();
+
+		//放入键值对
+		params.put("latitude",""+SplashActivity.latitude);
+		params.put("longitude",""+SplashActivity.longitude);
+		params.put("page",""+1);
+		params.put("pageSize",""+3);
+
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(params);
+
+		MediaType JSON = MediaType.parse("application/json; charset=utf-8");//数据类型为json格式，
+
+		RequestBody body = RequestBody.create(JSON, jsonData);
+
+		//2.构造request
+		Request.Builder request = new Request.Builder();
+
+		//3.将request封装为call
+		Request builder = request
+				.url("http://user.zglcfn.com:8763/store/getServiceStore")
+                .post(body)
+				.build();
+
+		//4.执行call
+		Call call = okHttpClient.newCall(builder);
+		call.enqueue(new Callback() {
+			@Override
+			public void onFailure(Call call, IOException e) {
+				e.printStackTrace();
+				L.e("请求失败ee"+e.getMessage());
+			}
+
+			@Override
+			public void onResponse(Call call, Response response) throws IOException {
+				String string = response.body().string();
+				//L.e("数据"+string);
+				//解析数据
+				processData(string);
+
+			}
+		});
 
 	}
-
-    /**
-     * 访问网络
-     */
-    private void getDataFromServer() {
-
-
-        Map<String, String> params = new HashMap<String, String>();
-        //访问服务器
-        //1.拿到okhttp对象
-        //OkHttpClient okHttpClient = new OkHttpClient();
-
-
-        OkHttpClient okHttpClient = OkHttphelper.getOkHttpClient();
-
-        //放入键值对
-        params.put("latitude",""+SplashActivity.latitude);
-        params.put("longitude",""+SplashActivity.longitude);
-        params.put("page",""+1);
-        params.put("pageSize",""+7);
-
-        Gson gson = new Gson();
-        String jsonData = gson.toJson(params);
-
-        MediaType JSON = MediaType.parse("application/json; charset=utf-8");//数据类型为json格式，
-
-        RequestBody body = RequestBody.create(JSON, jsonData);
-
-        //2.构造request
-        Request.Builder request = new Request.Builder();
-
-        //3.将request封装为call
-        Request builder = request
-                .url("http://user.zglcfn.com:8763/store/getServiceStore")
-                .post(body)
-                .build();
-
-        //4.执行call
-        Call call = okHttpClient.newCall(builder);
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-                L.e("请求失败ee"+e.getMessage());
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                String string = response.body().string();
-                //L.e("数据"+string);
-
-                //写缓存
-                getDataFromServer(string);
-
-                //解析数据
-                processData(string);
-
-                mActivity.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        shopListView.setAdapter(new shopListViewAdapter(mShopData.data));
-                    }
-                });
-
-            }
-
-
-        });
-    }
-
-    /**
-     * 读缓存
-     * @return
-     */
-    private String getCache() {
-        FileInputStream in=null;
-        BufferedReader readr=null;
-        StringBuilder builder=new StringBuilder();
-        try {
-            in=mActivity.openFileInput("shoppager");
-            readr=new BufferedReader(new InputStreamReader(in));
-
-            String deadline = readr.readLine();// 读取第一行的有效期
-            long deadtime = Long.parseLong(deadline);
-            if(System.currentTimeMillis() < deadtime){ // 当前时间小于截止时间,说明缓存有效
-               // 缓存有效
-                String line="";
-                while((line = readr.readLine()) !=null){
-                    builder.append(line);
-
-                }
-                return builder.toString();
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            if(readr!=null){
-                try {
-                    readr.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return null;
-    }
-
-    /**
-     * 写缓存
-     */
-    private void getDataFromServer(String json) {
-        FileOutputStream out=null;
-        BufferedWriter writer=null;
-        try {
-            out=mActivity.openFileOutput("shoppager",mActivity.MODE_PRIVATE);
-            writer=new BufferedWriter(new OutputStreamWriter(out));
-
-            //缓存失效时间
-            long deadline = System.currentTimeMillis() + 30 * 60 * 1000;// 半个小时有效期
-            writer.write(deadline+"\n");// 在第一行写入缓存时间, 换行
-            writer.write(json);// 写入json
-            writer.flush();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }finally {
-            if (writer!=null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-
-    }
 
 	/**
 	 * 解析json数据
 	 * @param string json数据
 	 */
-	private ArrayList<ShopData.BenData> processData(String string) {
+	private void processData(String string) {
 
 		Gson gson = new Gson();
 		mShopData = gson.fromJson(string, ShopData.class);
 
+        //在主线程中更新UI
+		mActivity.runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				shopListView.setAdapter(new shopListViewAdapter(mShopData.data));
+			}
+		});
+		//shopListView条目监听
+		shopListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
+				Intent intent = new Intent(mActivity,ShopListItemActivity.class);
+				intent.putExtra("id",mShopData.data.get(position).id);
+				mActivity.startActivity(intent);
 
-		return mShopData.data;
-
+				}
+		});
 	}
 
 	public void showPopuWindow(final CheckBox v){
+		//initListView(v);
 		mPopulistView = new ListView(mActivity);
 
 		mData = new ArrayList<String>();
 		for(int i=0;i<10;i++){
 			mData.add("你好"+i);
 		}
-
+		/*if(v==selectarea){
+			mData = new ArrayList<String>();
+			for(int i=0;i<10;i++){
+				mData.add("你好"+i);
+			}
+		}*/
 		mPopulistView.setAdapter(new popuListAdapter(mData));
 
 		mPopulistView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -302,6 +201,7 @@ public class ShopPager extends BasePager implements CompoundButton.OnCheckedChan
 				String s = mData.get(position);
 				L.e(s);
 				v.setText(s);
+
 			}
 		});
 
@@ -330,14 +230,18 @@ public class ShopPager extends BasePager implements CompoundButton.OnCheckedChan
 			return new popuListHolder();
 		}
 
+		@Override
+		public boolean hasMore() {
+			return false;
+		}
 
 		@Override
 		public ArrayList<String> onLoadingMore() {
-		ArrayList<String> moreData = new ArrayList<String>();
+		/*	ArrayList<String> moreData = new ArrayList<String>();
 			for(int i=0;i<15;i++){
 				moreData.add("还有很多数据"+i);
-			}
-			return moreData;
+			}*/
+			return null;
 		}
 
 		/*@Override
@@ -411,56 +315,13 @@ public class ShopPager extends BasePager implements CompoundButton.OnCheckedChan
 		 */
 		@Override
 		public boolean hasMore() {
-			return true;
+			return false;
 		}
 
 		//实现加载更多方法
 		@Override
 		public ArrayList<ShopData.BenData> onLoadingMore() {
-            more++;
-			Map<String, String> params = new HashMap<String, String>();
-			OkHttpClient okHttpClient = OkHttphelper.getOkHttpClient();
-			//放入键值对
-			params.put("latitude",""+SplashActivity.latitude);
-			params.put("longitude",""+SplashActivity.longitude);
-			params.put("page",""+more++);
-			params.put("pageSize",""+7);
-
-            //MAP转化为Gson格式
-			Gson gson = new Gson();
-			String jsonData = gson.toJson(params);
-
-			MediaType JSON = MediaType.parse("application/json; charset=utf-8");//数据类型为json格式，
-
-			RequestBody body = RequestBody.create(JSON, jsonData);
-
-			//2.构造request
-			Request.Builder request = new Request.Builder();
-
-			//3.将request封装为call
-			Request builder = request
-					.url("http://user.zglcfn.com:8763/store/getServiceStore")
-					.post(body)
-					.build();
-
-			//4.执行call
-			Call call = okHttpClient.newCall(builder);
-			call.enqueue(new Callback() {
-				@Override
-				public void onFailure(Call call, IOException e) {
-					e.printStackTrace();
-					L.e("请求失败ee"+e.getMessage());
-				}
-
-				@Override
-				public void onResponse(Call call, Response response) throws IOException {
-					String string = response.body().string();
-					L.e("数据"+string);
-					//解析数据
-                    mMoreDatas = processData(string);
-                }
-			});
-			return mMoreDatas;
+			return null;
 		}
 
 	}
