@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.wang.xiaoyu.R;
 import com.wang.xiaoyu.Zfb.PayResult;
 import com.wang.xiaoyu.domain.OrderInfoUtil2_0;
@@ -25,7 +28,7 @@ import java.util.Map;
 public class PayActivity extends Activity implements View.OnClickListener{
     private RadioGroup mPaymentRadioGroup;
     private Button mPaymentButton;
-
+    private IWXAPI api;
 
     private static final int SDK_PAY_FLAG = 1001;
     public static final String RSA_PRIVATE = "";
@@ -62,7 +65,10 @@ public class PayActivity extends Activity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
-
+        // 创建IWXAPI对象
+        api = WXAPIFactory.createWXAPI(this, null);
+        // 使用app_id注册app
+        api.registerApp("123");
         //L.e("跳转到Pay");
 
         initUI();
@@ -149,6 +155,18 @@ public class PayActivity extends Activity implements View.OnClickListener{
                         payThread.start();
                     }else{
                         //调取微信支付
+                        // 创建PayReq对象
+                        PayReq request = new PayReq();
+                        request.appId = "wxd930ea5d5a258f4f";
+                        request.partnerId = "1900000109";
+                        request.prepayId= "1101000000140415649af9fc314aa427";
+                        request.packageValue = "Sign=WXPay";
+                        request.nonceStr= "1101000000140429eb40476f8896f4c9";
+                        request.timeStamp= "1398746574";
+                        request.sign= "7FFECB600D7157C5AA49810D2D8F28BC2811827B";
+                        api.sendReq(request);
+
+
                         Toast.makeText(PayActivity.this, "没有微信支付", Toast.LENGTH_SHORT).show();
                 }
 

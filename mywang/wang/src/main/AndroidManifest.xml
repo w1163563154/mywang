@@ -91,6 +91,12 @@
         </activity>
         <activity android:name=".Activity.PayActivity">
         </activity>
+
+        <!-- 微信回调 -->
+        <activity
+            android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop"/>
     </application>
 
 </manifest>
