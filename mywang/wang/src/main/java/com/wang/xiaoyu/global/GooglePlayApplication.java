@@ -6,6 +6,8 @@ import android.os.Handler;
 
 import com.mob.MobSDK;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by 小 on 2018/9/17.
  */
@@ -24,7 +26,15 @@ public class GooglePlayApplication extends Application {
         mainThreadId = android.os.Process.myTid();
         MobSDK.init(this, this.getAppkey(), this.getAppSecret());
 
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        //MultiDex.install(this);
     }
 
     protected String getAppkey() {
