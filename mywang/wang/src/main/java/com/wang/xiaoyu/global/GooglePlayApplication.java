@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.mob.MobSDK;
+
 import cn.jpush.android.api.JPushInterface;
 
 /**
@@ -22,7 +24,7 @@ public class GooglePlayApplication extends Application {
         context = getApplicationContext();
         handler = new Handler();
         mainThreadId = android.os.Process.myTid();
-
+        MobSDK.init(context, "2814ae25018a0", "d1da9b9679958fab3749b1518d58d4ff");
         //初始化sdk
         JPushInterface.setDebugMode(true);//正式版的时候设置false，关闭调试
         JPushInterface.init(this);
